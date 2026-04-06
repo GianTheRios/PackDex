@@ -491,6 +491,17 @@ a:hover {
   border-bottom-color: var(--accent-gold);
 }
 
+/* Market detail 2-col grid */
+.market-detail-grid {
+  grid-template-columns: 1fr 320px;
+}
+
+@media (max-width: 768px) {
+  .market-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* Utility */
 .text-gold { color: var(--accent-gold); }
 .text-green { color: var(--accent-green); }
