@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Dev wallet — private keyfile, never commit (testnet throwaway)
+.dev-wallet.json

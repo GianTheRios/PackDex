@@ -2,29 +2,29 @@ import { useState } from 'react';
 import { mockUser } from '../data/mockUser';
 
 const card: React.CSSProperties = {
-  background: '#fff',
-  border: '2px solid #1a1a1a',
+  background: 'var(--bg-card)',
+  border: '2px solid var(--border)',
   borderRadius: 8,
-  boxShadow: '3px 3px 0 #1a1a1a',
+  boxShadow: '3px 3px 0 #000',
   padding: 24,
 };
 
 const labelStyle: React.CSSProperties = {
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: 'var(--font-body)',
   fontSize: 11,
   fontWeight: 700,
   textTransform: 'uppercase',
   letterSpacing: '0.08em',
-  color: '#666660',
+  color: 'var(--text-muted)',
   marginBottom: 8,
 };
 
 const sectionTitle: React.CSSProperties = {
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: 'var(--font-body)',
   fontSize: 14,
   fontWeight: 700,
   textTransform: 'uppercase',
-  color: '#1a1a1a',
+  color: 'var(--text)',
   marginBottom: 16,
 };
 
@@ -55,21 +55,21 @@ export function FoilPool() {
       maxWidth: 1100,
       margin: '0 auto',
       padding: '32px 24px',
-      fontFamily: 'Inter, sans-serif',
+      fontFamily: 'var(--font-body)',
     }}>
       {/* Page header */}
       <div style={{ marginBottom: 32 }}>
         <h1 style={{
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: 'var(--font-body)',
           fontSize: 28,
           fontWeight: 800,
-          color: '#1a1a1a',
+          color: 'var(--text)',
           margin: 0,
         }}>FOIL POOL</h1>
         <p style={{
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: 'var(--font-body)',
           fontSize: 14,
-          color: '#666660',
+          color: 'var(--text-muted)',
           margin: '6px 0 0',
         }}>Earn yield from every market settlement.</p>
       </div>
@@ -88,24 +88,24 @@ export function FoilPool() {
             {/* Pool Size */}
             <div style={card}>
               <div style={labelStyle}>POOL SIZE</div>
-              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 28, fontWeight: 800, color: '#1a1a1a' }}>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: 28, fontWeight: 800, color: 'var(--text)' }}>
                 $145,200 <span style={{ fontSize: 14, fontWeight: 700 }}>USDH</span>
               </div>
             </div>
             {/* Current APY */}
             <div style={card}>
               <div style={labelStyle}>CURRENT APY</div>
-              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 28, fontWeight: 800, color: '#FFD700' }}>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: 28, fontWeight: 800, color: 'var(--accent-gold)' }}>
                 12.4%
               </div>
             </div>
             {/* Your Position */}
             <div style={card}>
               <div style={labelStyle}>YOUR POSITION</div>
-              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 28, fontWeight: 800, color: '#1a1a1a' }}>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: 28, fontWeight: 800, color: 'var(--text)' }}>
                 ${mockUser.foilPoolDeposit.toLocaleString()}
               </div>
-              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 12, color: '#51CF66', marginTop: 2 }}>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--accent-green)', marginTop: 2 }}>
                 +${mockUser.foilPoolEarnings.toFixed(2)} earned
               </div>
             </div>
@@ -122,13 +122,13 @@ export function FoilPool() {
                 style={{
                   flex: 1,
                   padding: 10,
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 13,
                   fontWeight: 700,
-                  border: '2px solid #1a1a1a',
+                  border: '2px solid var(--border)',
                   borderRadius: '6px 0 0 6px',
-                  background: mode === 'deposit' ? '#1a1a1a' : '#fff',
-                  color: mode === 'deposit' ? '#fff' : '#1a1a1a',
+                  background: mode === 'deposit' ? 'var(--bg-panel)' : 'var(--bg-card)',
+                  color: 'var(--text)',
                   cursor: 'pointer',
                 }}
               >DEPOSIT</button>
@@ -137,14 +137,14 @@ export function FoilPool() {
                 style={{
                   flex: 1,
                   padding: 10,
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 13,
                   fontWeight: 700,
-                  border: '2px solid #1a1a1a',
+                  border: '2px solid var(--border)',
                   borderLeft: 'none',
                   borderRadius: '0 6px 6px 0',
-                  background: mode === 'withdraw' ? '#1a1a1a' : '#fff',
-                  color: mode === 'withdraw' ? '#fff' : '#1a1a1a',
+                  background: mode === 'withdraw' ? 'var(--bg-panel)' : 'var(--bg-card)',
+                  color: 'var(--text)',
                   cursor: 'pointer',
                 }}
               >WITHDRAW</button>
@@ -152,11 +152,11 @@ export function FoilPool() {
 
             {/* Amount input */}
             <div style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'var(--font-body)',
               fontSize: 12,
               fontWeight: 700,
               textTransform: 'uppercase',
-              color: '#666660',
+              color: 'var(--text-muted)',
               marginBottom: 6,
             }}>AMOUNT (USDH)</div>
             <input
@@ -167,20 +167,20 @@ export function FoilPool() {
               style={{
                 width: '100%',
                 boxSizing: 'border-box',
-                border: '2px solid #1a1a1a',
+                border: '2px solid var(--border)',
                 borderRadius: 6,
                 padding: '12px 16px',
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: 'var(--font-body)',
                 fontSize: 16,
-                color: '#1a1a1a',
+                color: 'var(--text)',
                 outline: 'none',
-                background: '#fff',
+                background: 'var(--bg-card)',
               }}
             />
             <div style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'var(--font-body)',
               fontSize: 12,
-              color: '#666660',
+              color: 'var(--text-muted)',
               marginTop: 6,
               marginBottom: 12,
             }}>
@@ -194,18 +194,18 @@ export function FoilPool() {
                   key={b.label}
                   onClick={() => setPercent(b.pct)}
                   style={{
-                    background: '#fff',
-                    border: '2px solid #1a1a1a',
+                    background: 'var(--bg-card)',
+                    border: '2px solid var(--border)',
                     borderRadius: 12,
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 11,
                     fontWeight: 700,
                     padding: '4px 10px',
-                    boxShadow: '1px 1px 0 #1a1a1a',
+                    boxShadow: '1px 1px 0 #000',
                     cursor: 'pointer',
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.background = '#FFD700')}
-                  onMouseLeave={e => (e.currentTarget.style.background = '#fff')}
+                  onMouseEnter={e => (e.currentTarget.style.background = 'var(--accent-gold)')}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'var(--bg-card)')}
                 >{b.label}</button>
               ))}
             </div>
@@ -217,12 +217,12 @@ export function FoilPool() {
                 style={{
                   minWidth: 180,
                   padding: '12px 32px',
-                  background: '#FFD700',
-                  color: '#1a1a1a',
-                  border: '2px solid #1a1a1a',
+                  background: 'var(--accent-gold)',
+                  color: '#000',
+                  border: '2px solid var(--border)',
                   borderRadius: 6,
-                  boxShadow: '3px 3px 0 #1a1a1a',
-                  fontFamily: 'Inter, sans-serif',
+                  boxShadow: '3px 3px 0 #000',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 14,
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -230,9 +230,9 @@ export function FoilPool() {
               >{mode === 'deposit' ? 'DEPOSIT' : 'WITHDRAW'}</button>
             </div>
             <p style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'var(--font-body)',
               fontSize: 11,
-              color: '#666660',
+              color: 'var(--text-muted)',
               textAlign: 'center',
               marginTop: 12,
               marginBottom: 0,
@@ -250,36 +250,36 @@ export function FoilPool() {
             {steps.map((step, i) => (
               <div key={i}>
                 {i > 0 && (
-                  <div style={{ borderTop: '1px dashed #E0E0D8', margin: '16px 0' }} />
+                  <div style={{ borderTop: '1px dashed var(--border-light)', margin: '16px 0' }} />
                 )}
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <div style={{
                     width: 24,
                     height: 24,
                     borderRadius: '50%',
-                    background: '#FFD700',
-                    border: '2px solid #1a1a1a',
+                    background: 'var(--accent-gold)',
+                    border: '2px solid var(--border)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 12,
                     fontWeight: 700,
-                    color: '#1a1a1a',
+                    color: '#000',
                     flexShrink: 0,
                   }}>{i + 1}</div>
                   <div style={{
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 14,
                     fontWeight: 700,
-                    color: '#1a1a1a',
+                    color: 'var(--text)',
                     marginLeft: 12,
                   }}>{step.title}</div>
                 </div>
                 <div style={{
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 13,
-                  color: '#666660',
+                  color: 'var(--text-muted)',
                   marginTop: 4,
                   marginLeft: 36,
                 }}>{step.desc}</div>
@@ -298,13 +298,13 @@ export function FoilPool() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: '10px 0',
-                  borderBottom: i < activities.length - 1 ? '1px solid #E0E0D8' : 'none',
-                  fontFamily: 'Inter, sans-serif',
+                  borderBottom: i < activities.length - 1 ? '1px solid var(--border-light)' : 'none',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 13,
                 }}
               >
-                <span style={{ color: '#1a1a1a' }}>{a.text}</span>
-                <span style={{ color: '#666660', marginLeft: 12, flexShrink: 0 }}>{a.time}</span>
+                <span style={{ color: 'var(--text)' }}>{a.text}</span>
+                <span style={{ color: 'var(--text-muted)', marginLeft: 12, flexShrink: 0 }}>{a.time}</span>
               </div>
             ))}
           </div>

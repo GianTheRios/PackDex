@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAppStore } from '../../store/useAppStore';
+import { useWallet } from '../../lib/useWallet';
+import { useTheme } from '../../lib/useTheme';
 
 export function Header() {
-  const { walletConnected, walletAddress, usdhBalance, connectWallet, disconnectWallet } = useAppStore();
+  const { isConnected, addressShort, balanceLabel, isConnecting, connect, disconnect } = useWallet();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
   const navLinks = [
@@ -49,14 +51,33 @@ export function Header() {
       </nav>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        {walletConnected && (
+        <button
+          onClick={toggleTheme}
+          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          aria-label="Toggle light/dark theme"
+          style={{
+            fontSize: 14,
+            lineHeight: 1,
+            padding: '7px 11px',
+            border: '2px solid var(--border)',
+            background: 'var(--bg-card)',
+            color: 'var(--text)',
+            borderRadius: 6,
+            cursor: 'pointer',
+            boxShadow: 'var(--shadow)',
+          }}
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+        {isConnected && balanceLabel && (
           <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>
-            {usdhBalance.toLocaleString()} USDH
+            {balanceLabel}
           </span>
         )}
-        {walletConnected ? (
+        {isConnected ? (
           <button
-            onClick={disconnectWallet}
+            onClick={() => disconnect()}
+            title="Disconnect wallet"
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 13,
@@ -71,11 +92,12 @@ export function Header() {
               textTransform: 'uppercase',
             }}
           >
-            {walletAddress}
+            {addressShort}
           </button>
         ) : (
           <button
-            onClick={connectWallet}
+            onClick={connect}
+            disabled={isConnecting}
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 13,
@@ -85,12 +107,13 @@ export function Header() {
               background: 'var(--accent-gold)',
               color: '#000',
               borderRadius: 6,
-              cursor: 'pointer',
+              cursor: isConnecting ? 'wait' : 'pointer',
+              opacity: isConnecting ? 0.7 : 1,
               boxShadow: 'var(--shadow)',
               textTransform: 'uppercase',
             }}
           >
-            CONNECT
+            {isConnecting ? 'CONNECTING…' : 'CONNECT'}
           </button>
         )}
       </div>

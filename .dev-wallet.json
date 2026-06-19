@@ -1,9 +1,0 @@
-{
-  "note": "Packdex dev/testnet wallet — DO NOT commit, DO NOT fund with real money",
-  "address": "0x2b701AB376f6Ac2b777187c041104987f866D07b",
-  "privateKey": "0xbe4bfefd91bcd2bee316180b5d0c95619041045355c28607bf815ee796fef887",
-  "mnemonic": "domain prevent pudding gravity forest pride caught furnace spider valley click again",
-  "network": "Hyperliquid Testnet",
-  "chainId": 998,
-  "rpc": "https://rpc.hyperliquid-testnet.xyz/evm"
-}

@@ -14,45 +14,45 @@ const SOURCES = [
 ];
 
 const cardStyle: React.CSSProperties = {
-  background: '#fff',
-  border: '2px solid #1a1a1a',
+  background: 'var(--bg-card)',
+  border: '2px solid var(--border)',
   borderRadius: 8,
-  boxShadow: '3px 3px 0 #1a1a1a',
+  boxShadow: '3px 3px 0 #000',
   padding: 24,
   marginBottom: 20,
 };
 
 const sectionTitle: React.CSSProperties = {
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: 'var(--font-body)',
   fontSize: 13,
   fontWeight: 700,
   textTransform: 'uppercase',
-  color: '#1a1a1a',
+  color: 'var(--text)',
   letterSpacing: '0.08em',
   marginBottom: 16,
 };
 
 const inputLabel: React.CSSProperties = {
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: 'var(--font-body)',
   fontSize: 11,
   fontWeight: 700,
   textTransform: 'uppercase',
-  color: '#666660',
+  color: 'var(--text-muted)',
   letterSpacing: '0.06em',
   marginBottom: 6,
   display: 'block',
 };
 
 const inputStyle: React.CSSProperties = {
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: 'var(--font-body)',
   fontSize: 14,
-  border: '2px solid #1a1a1a',
+  border: '2px solid var(--border)',
   borderRadius: 6,
   padding: '10px 14px',
   width: '100%',
   boxSizing: 'border-box',
   outline: 'none',
-  background: '#fff',
+  background: 'var(--bg-card)',
 };
 
 export function CreateMarket() {
@@ -73,22 +73,22 @@ export function CreateMarket() {
       maxWidth: 1100,
       margin: '0 auto',
       padding: '32px 24px',
-      fontFamily: 'Inter, sans-serif',
+      fontFamily: 'var(--font-body)',
     }}>
       {/* Page Header */}
       <h1 style={{
-        fontFamily: 'Inter, sans-serif',
+        fontFamily: 'var(--font-body)',
         fontSize: 28,
         fontWeight: 800,
-        color: '#1a1a1a',
+        color: 'var(--text)',
         margin: 0,
       }}>
         CREATE A MARKET
       </h1>
       <p style={{
-        fontFamily: 'Inter, sans-serif',
+        fontFamily: 'var(--font-body)',
         fontSize: 14,
-        color: '#666660',
+        color: 'var(--text-muted)',
         marginTop: 4,
         marginBottom: 32,
       }}>
@@ -113,29 +113,29 @@ export function CreateMarket() {
                   key={i}
                   onClick={() => setTemplate(i)}
                   style={{
-                    background: template === i ? '#FFD700' : '#fff',
-                    border: '2px solid #1a1a1a',
+                    background: template === i ? 'var(--accent-gold)' : 'var(--bg-card)',
+                    border: '2px solid var(--border)',
                     borderRadius: 6,
                     padding: '12px 16px',
                     cursor: 'pointer',
                     textAlign: 'left',
-                    boxShadow: template === i ? '2px 2px 0 #1a1a1a' : 'none',
+                    boxShadow: template === i ? '2px 2px 0 #000' : 'none',
                     transition: 'background 0.15s, box-shadow 0.15s',
                   }}
                 >
                   <div style={{
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 12,
                     fontWeight: 700,
-                    color: '#1a1a1a',
+                    color: template === i ? '#000' : 'var(--text)',
                     textTransform: 'uppercase',
                   }}>
                     {t.label}
                   </div>
                   <div style={{
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 11,
-                    color: '#666660',
+                    color: template === i ? '#000' : 'var(--text-muted)',
                     marginTop: 2,
                   }}>
                     {t.desc}
@@ -156,7 +156,7 @@ export function CreateMarket() {
                 placeholder="e.g. Scarlet & Violet Booster Box"
                 value={product}
                 onChange={e => setProduct(e.target.value)}
-                onFocus={e => { e.target.style.outline = '2px solid #FFD700'; e.target.style.outlineOffset = '1px'; }}
+                onFocus={e => { e.target.style.outline = '2px solid var(--accent-gold)'; e.target.style.outlineOffset = '1px'; }}
                 onBlur={e => { e.target.style.outline = 'none'; }}
               />
             </div>
@@ -169,7 +169,7 @@ export function CreateMarket() {
                 placeholder="e.g. 160"
                 value={price}
                 onChange={e => setPrice(e.target.value)}
-                onFocus={e => { e.target.style.outline = '2px solid #FFD700'; e.target.style.outlineOffset = '1px'; }}
+                onFocus={e => { e.target.style.outline = '2px solid var(--accent-gold)'; e.target.style.outlineOffset = '1px'; }}
                 onBlur={e => { e.target.style.outline = 'none'; }}
               />
             </div>
@@ -181,7 +181,7 @@ export function CreateMarket() {
                 type="date"
                 value={date}
                 onChange={e => setDate(e.target.value)}
-                onFocus={e => { e.target.style.outline = '2px solid #FFD700'; e.target.style.outlineOffset = '1px'; }}
+                onFocus={e => { e.target.style.outline = '2px solid var(--accent-gold)'; e.target.style.outlineOffset = '1px'; }}
                 onBlur={e => { e.target.style.outline = 'none'; }}
               />
             </div>
@@ -192,7 +192,7 @@ export function CreateMarket() {
                 style={{ ...inputStyle, appearance: 'auto' }}
                 value={source}
                 onChange={e => setSource(e.target.value)}
-                onFocus={e => { e.target.style.outline = '2px solid #FFD700'; e.target.style.outlineOffset = '1px'; }}
+                onFocus={e => { e.target.style.outline = '2px solid var(--accent-gold)'; e.target.style.outlineOffset = '1px'; }}
                 onBlur={e => { e.target.style.outline = 'none'; }}
               >
                 {SOURCES.map(s => <option key={s}>{s}</option>)}
@@ -208,9 +208,9 @@ export function CreateMarket() {
             <div style={sectionTitle}>MARKET PREVIEW</div>
             {!hasFilled ? (
               <div style={{
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: 'var(--font-body)',
                 fontSize: 14,
-                color: '#666660',
+                color: 'var(--text-muted)',
                 textAlign: 'center',
                 padding: '32px 0',
               }}>
@@ -219,21 +219,21 @@ export function CreateMarket() {
             ) : (
               <div>
                 <div style={{
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 10,
                   fontWeight: 700,
                   textTransform: 'uppercase',
-                  color: '#666660',
+                  color: 'var(--text-muted)',
                   letterSpacing: '0.06em',
                   marginBottom: 8,
                 }}>
                   PREVIEW
                 </div>
                 <div style={{
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 15,
                   fontWeight: 600,
-                  color: '#1a1a1a',
+                  color: 'var(--text)',
                   marginBottom: 16,
                   lineHeight: 1.4,
                 }}>
@@ -248,16 +248,16 @@ export function CreateMarket() {
                   overflow: 'hidden',
                   marginBottom: 6,
                 }}>
-                  <div style={{ flex: 1, background: '#FFD700' }} />
-                  <div style={{ flex: 1, background: '#FF6B6B' }} />
+                  <div style={{ flex: 1, background: 'var(--accent-gold)' }} />
+                  <div style={{ flex: 1, background: 'var(--accent-red)' }} />
                 </div>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 12,
                   fontWeight: 600,
-                  color: '#1a1a1a',
+                  color: 'var(--text)',
                   marginBottom: 16,
                 }}>
                   <span>50% YES</span>
@@ -269,21 +269,21 @@ export function CreateMarket() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 12,
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 11,
-                  color: '#666660',
+                  color: 'var(--text-muted)',
                 }}>
                   <div style={{
                     width: 22,
                     height: 22,
                     borderRadius: '50%',
-                    background: '#FFD700',
+                    background: 'var(--accent-gold)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontWeight: 700,
                     fontSize: 11,
-                    color: '#1a1a1a',
+                    color: '#000',
                   }}>
                     Y
                   </div>
@@ -299,18 +299,18 @@ export function CreateMarket() {
           <div style={cardStyle}>
             <div style={sectionTitle}>CREATION STAKE</div>
             <div style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'var(--font-body)',
               fontSize: 32,
               fontWeight: 800,
-              color: '#FFD700',
+              color: 'var(--accent-gold)',
               marginBottom: 4,
             }}>
               15 USDH
             </div>
             <div style={{
-              fontFamily: 'Inter, sans-serif',
+              fontFamily: 'var(--font-body)',
               fontSize: 12,
-              color: '#666660',
+              color: 'var(--text-muted)',
               marginBottom: 20,
             }}>
               Refunded if market is not approved (&lt; 10 upvotes in 24h)
@@ -321,12 +321,12 @@ export function CreateMarket() {
               onMouseLeave={() => setHoveredSubmit(false)}
               style={{
                 width: '100%',
-                background: '#FFD700',
-                color: '#1a1a1a',
-                border: '2px solid #1a1a1a',
+                background: 'var(--accent-gold)',
+                color: '#000',
+                border: '2px solid var(--border)',
                 borderRadius: 6,
-                boxShadow: hoveredSubmit ? '4px 4px 0 #1a1a1a' : '3px 3px 0 #1a1a1a',
-                fontFamily: 'Inter, sans-serif',
+                boxShadow: hoveredSubmit ? '4px 4px 0 #000' : '3px 3px 0 #000',
+                fontFamily: 'var(--font-body)',
                 fontSize: 15,
                 fontWeight: 700,
                 padding: 14,
@@ -357,32 +357,32 @@ export function CreateMarket() {
                   width: 28,
                   height: 28,
                   borderRadius: '50%',
-                  background: '#FFD700',
+                  background: 'var(--accent-gold)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'var(--font-body)',
                   fontSize: 13,
                   fontWeight: 800,
-                  color: '#1a1a1a',
+                  color: '#000',
                   flexShrink: 0,
                 }}>
                   {step.num}
                 </div>
                 <div>
                   <div style={{
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 13,
                     fontWeight: 700,
-                    color: '#1a1a1a',
+                    color: 'var(--text)',
                     marginBottom: 2,
                   }}>
                     {step.title}
                   </div>
                   <div style={{
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: 12,
-                    color: '#666660',
+                    color: 'var(--text-muted)',
                     lineHeight: 1.5,
                   }}>
                     {step.desc}

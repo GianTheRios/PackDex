@@ -1,22 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
 
 :root {
+  /* Light theme (default). Switch to dark via [data-theme="dark"] on <html>. */
+  color-scheme: light;
+  /* Backgrounds */
   --bg: #F5F5F0;
+  --bg-primary: #F5F5F0;
+  --bg-secondary: #FFFFFF;
   --bg-card: #FFFFFF;
   --bg-panel: #F0F0EB;
+  /* Borders */
   --border: #1a1a1a;
   --border-light: #E0E0D8;
+  --border-accent: #e94560;
+  /* Text */
   --text: #1a1a1a;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666660;
   --text-muted: #666660;
+  /* Accents */
   --accent-blue: #4FC3F7;
   --accent-gold: #FFD700;
   --accent-red: #FF6B6B;
   --accent-green: #51CF66;
+  /* Hard pixel shadows (no blur) */
   --shadow: 3px 3px 0px #1a1a1a;
   --shadow-lg: 5px 5px 0px #1a1a1a;
 
   --font-pixel: 'Press Start 2P', monospace;
   --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+:root[data-theme="dark"] {
+  /* Retro_OS Dark Mode (CONTEXT.md palette). */
+  color-scheme: dark;
+  /* Backgrounds */
+  --bg: #1a1a2e;
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #16213e;
+  --bg-panel: #0f3460;
+  /* Borders */
+  --border: #4a4a6a;
+  --border-light: #2a2a44;
+  --border-accent: #e94560;
+  /* Text */
+  --text: #eaeaea;
+  --text-primary: #eaeaea;
+  --text-secondary: #9999bb;
+  --text-muted: #9999bb;
+  /* Accents */
+  --accent-blue: #007bff;
+  --accent-gold: #ffd700;
+  --accent-red: #ff4455;
+  --accent-green: #00ff88;
+  /* Hard pixel shadows */
+  --shadow: 2px 2px 0px #000;
+  --shadow-lg: 4px 4px 0px #000;
+}
+
+/* Smooth cross-fade when toggling themes — class is applied only during the switch,
+   so hover/press animations and initial load stay instant. */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition: background-color 0.3s ease, color 0.3s ease,
+      border-color 0.3s ease, box-shadow 0.3s ease !important;
+  }
 }
 
 * {

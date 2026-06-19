@@ -57,19 +57,19 @@ export function Home() {
             onClick={() => navigate('/create')}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translate(-1px, -1px)';
-              e.currentTarget.style.boxShadow = '3px 3px 0 #1a1a1a';
+              e.currentTarget.style.boxShadow = '3px 3px 0 #000';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = 'none';
-              e.currentTarget.style.boxShadow = '2px 2px 0 #1a1a1a';
+              e.currentTarget.style.boxShadow = '2px 2px 0 #000';
             }}
             style={{
-              background: '#FFD700',
+              background: 'var(--accent-gold)',
               color: 'black',
-              border: '2px solid #1a1a1a',
+              border: '2px solid var(--border)',
               borderRadius: 20,
-              boxShadow: '2px 2px 0 #1a1a1a',
-              fontFamily: 'Inter, sans-serif',
+              boxShadow: '2px 2px 0 #000',
+              fontFamily: 'var(--font-body)',
               fontSize: 13,
               fontWeight: 700,
               padding: '8px 18px',
@@ -89,10 +89,10 @@ export function Home() {
 
       {/* CTA Banner */}
       <div style={{
-        background: 'white',
-        border: '2px solid black',
+        background: 'var(--bg-card)',
+        border: '2px solid var(--border)',
         borderRadius: 8,
-        boxShadow: '3px 3px 0 #1a1a1a',
+        boxShadow: '3px 3px 0 #000',
         padding: '24px 32px',
         display: 'flex',
         flexDirection: 'row',
@@ -101,21 +101,21 @@ export function Home() {
         marginTop: 24,
       }}>
         <div>
-          <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 18, fontWeight: 700, color: 'black' }}>
+          <div style={{ fontFamily: 'var(--font-body)', fontSize: 18, fontWeight: 700, color: 'var(--text)' }}>
             Have a prediction? Put it on chain.
           </div>
-          <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#666660', marginTop: 4 }}>
+          <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--text-muted)', marginTop: 4 }}>
             Stake 15 USDH to propose a market. Earn 25% of fees if it goes live.
           </div>
         </div>
         <Link
           to="/create"
           style={{
-            background: '#FFD700',
+            background: 'var(--accent-gold)',
             color: 'black',
-            border: '2px solid black',
-            boxShadow: '3px 3px 0 #1a1a1a',
-            fontFamily: 'Inter, sans-serif',
+            border: '2px solid var(--border)',
+            boxShadow: '3px 3px 0 #000',
+            fontFamily: 'var(--font-body)',
             fontSize: 14,
             fontWeight: 700,
             padding: '12px 24px',

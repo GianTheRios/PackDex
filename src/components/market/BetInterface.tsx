@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { RetroButton } from '../ui/RetroButton';
-import { useAppStore } from '../../store/useAppStore';
+import { useWallet } from '../../lib/useWallet';
 
 interface Props {
   currentYes: number;
@@ -10,7 +10,7 @@ interface Props {
 export function BetInterface({ currentYes, marketName }: Props) {
   const [side, setSide] = useState<'YES' | 'NO'>('YES');
   const [amount, setAmount] = useState('');
-  const { walletConnected, connectWallet } = useAppStore();
+  const { isConnected, connect } = useWallet();
 
   const price = side === 'YES' ? currentYes / 100 : (100 - currentYes) / 100;
   const payout = amount ? (parseFloat(amount) / price).toFixed(2) : '0.00';
@@ -72,13 +72,13 @@ export function BetInterface({ currentYes, marketName }: Props) {
           <span className="text-green">${payout}</span>
         </div>
 
-        {walletConnected ? (
+        {isConnected ? (
           <RetroButton variant="primary" style={{ width: '100%' }}
             onClick={() => alert(`Mock bet: ${side} $${amount} on "${marketName}"`)}>
             BET {side}
           </RetroButton>
         ) : (
-          <RetroButton variant="primary" style={{ width: '100%' }} onClick={connectWallet}>
+          <RetroButton variant="primary" style={{ width: '100%' }} onClick={connect}>
             CONNECT WALLET
           </RetroButton>
         )}

@@ -1,7 +1,7 @@
 import { mockUser } from '../data/mockUser';
 
 const font = (size: number, weight: number) => ({
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: 'var(--font-body)',
   fontSize: size,
   fontWeight: weight,
 });
@@ -10,31 +10,31 @@ const sectionHeader: React.CSSProperties = {
   ...font(13, 700),
   textTransform: 'uppercase',
   letterSpacing: '0.1em',
-  color: '#1a1a1a',
+  color: 'var(--text)',
   marginBottom: 12,
 };
 
 const cardBox: React.CSSProperties = {
-  background: '#fff',
-  border: '2px solid #1a1a1a',
+  background: 'var(--bg-card)',
+  border: '2px solid var(--border)',
   borderRadius: 8,
-  boxShadow: '3px 3px 0 #1a1a1a',
+  boxShadow: '3px 3px 0 #000',
 };
 
 const tableHeaderCell: React.CSSProperties = {
   ...font(11, 700),
   textTransform: 'uppercase',
-  color: '#999',
+  color: 'var(--text-muted)',
   padding: '10px 14px',
   textAlign: 'left',
-  background: '#F0F0EB',
+  background: 'var(--bg-panel)',
 };
 
 const tableCell: React.CSSProperties = {
   ...font(14, 400),
-  color: '#1a1a1a',
+  color: 'var(--text)',
   padding: '10px 14px',
-  borderBottom: '1px solid #E0E0D8',
+  borderBottom: '1px solid var(--border-light)',
 };
 
 export function Profile() {
@@ -44,7 +44,6 @@ export function Profile() {
 
   return (
     <div style={{
-      background: '#F5F5F0',
       minHeight: '100vh',
       maxWidth: 1200,
       margin: '0 auto',
@@ -52,7 +51,7 @@ export function Profile() {
     }}>
       <h1 style={{
         ...font(24, 800),
-        color: '#1a1a1a',
+        color: 'var(--text)',
         marginBottom: 24,
         marginTop: 0,
       }}>
@@ -69,7 +68,7 @@ export function Profile() {
           {/* TRAINER CARD */}
           <div style={{
             ...cardBox,
-            boxShadow: '4px 4px 0 #1a1a1a',
+            boxShadow: '4px 4px 0 #000',
             padding: 24,
             display: 'flex',
             gap: 24,
@@ -81,8 +80,8 @@ export function Profile() {
                 width: 80,
                 height: 80,
                 borderRadius: '50%',
-                background: '#FFD700',
-                border: '2px solid #1a1a1a',
+                background: 'var(--accent-gold)',
+                border: '2px solid var(--border)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -93,9 +92,9 @@ export function Profile() {
                 TR
               </div>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ ...font(16, 800), color: '#1a1a1a' }}>{mockUser.displayName}</div>
-                <div style={{ ...font(12, 500), color: '#888' }}>{mockUser.handle}</div>
-                <div style={{ ...font(10, 500), color: '#aaa', marginTop: 2 }}>{mockUser.address}</div>
+                <div style={{ ...font(16, 800), color: 'var(--text)' }}>{mockUser.displayName}</div>
+                <div style={{ ...font(12, 500), color: 'var(--text-muted)' }}>{mockUser.handle}</div>
+                <div style={{ ...font(10, 500), color: 'var(--text-muted)', marginTop: 2 }}>{mockUser.address}</div>
               </div>
             </div>
 
@@ -112,7 +111,7 @@ export function Profile() {
               <StatBlock
                 label="P&L"
                 value={`${mockUser.pnl >= 0 ? '+' : ''}$${mockUser.pnl.toLocaleString()}`}
-                color={mockUser.pnl >= 0 ? '#FFD700' : '#FF6B6B'}
+                color={mockUser.pnl >= 0 ? 'var(--accent-gold)' : 'var(--accent-red)'}
               />
             </div>
           </div>
@@ -127,15 +126,15 @@ export function Profile() {
                   title={b.description}
                   style={{
                     ...font(12, 600),
-                    background: '#fff',
-                    border: '2px solid #1a1a1a',
+                    background: 'var(--bg-card)',
+                    border: '2px solid var(--border)',
                     borderRadius: 20,
-                    boxShadow: '2px 2px 0 #1a1a1a',
+                    boxShadow: '2px 2px 0 #000',
                     padding: '8px 16px',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: 6,
-                    color: '#1a1a1a',
+                    color: 'var(--text)',
                   }}
                 >
                   <span>{b.icon}</span>
@@ -166,8 +165,8 @@ export function Profile() {
                     <tr
                       key={b.marketId}
                       style={{ cursor: 'default' }}
-                      onMouseEnter={e => (e.currentTarget.style.background = '#F5F5F0')}
-                      onMouseLeave={e => (e.currentTarget.style.background = '#fff')}
+                      onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg)')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'var(--bg-card)')}
                     >
                       <td style={{ ...tableCell, ...font(14, 600) }}>{b.marketName}</td>
                       <td style={tableCell}>
@@ -202,8 +201,8 @@ export function Profile() {
                       <tr
                         key={b.marketId}
                         style={{ cursor: 'default' }}
-                        onMouseEnter={e => (e.currentTarget.style.background = '#F5F5F0')}
-                        onMouseLeave={e => (e.currentTarget.style.background = '#fff')}
+                        onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg)')}
+                        onMouseLeave={e => (e.currentTarget.style.background = 'var(--bg-card)')}
                       >
                         <td style={{ ...tableCell, ...font(14, 600) }}>{b.marketName}</td>
                         <td style={tableCell}>
@@ -213,7 +212,7 @@ export function Profile() {
                         <td style={{
                           ...tableCell,
                           ...font(14, 600),
-                          color: pnl >= 0 ? '#FFD700' : '#FF6B6B',
+                          color: pnl >= 0 ? 'var(--accent-gold)' : 'var(--accent-red)',
                         }}>
                           {pnl >= 0 ? '+' : ''}${pnl}
                         </td>
@@ -236,7 +235,7 @@ export function Profile() {
                       ...tableCell,
                       ...font(14, 700),
                       borderBottom: 'none',
-                      color: totalPnl >= 0 ? '#FFD700' : '#FF6B6B',
+                      color: totalPnl >= 0 ? 'var(--accent-gold)' : 'var(--accent-red)',
                     }}>
                       {totalPnl >= 0 ? '+' : ''}${totalPnl}
                     </td>
@@ -257,14 +256,14 @@ function StatBlock({ label, value, color }: { label: string; value: string; colo
       <div style={{
         ...font(11, 700),
         textTransform: 'uppercase',
-        color: '#999',
+        color: 'var(--text-muted)',
         marginBottom: 4,
       }}>
         {label}
       </div>
       <div style={{
         ...font(22, 800),
-        color: color || '#1a1a1a',
+        color: color || 'var(--text)',
       }}>
         {value}
       </div>
@@ -277,7 +276,7 @@ function SidePill({ side }: { side: 'YES' | 'NO' }) {
   return (
     <span style={{
       ...font(11, 700),
-      background: isYes ? '#FFD700' : '#FF6B6B',
+      background: isYes ? 'var(--accent-gold)' : 'var(--accent-red)',
       color: isYes ? '#1a1a1a' : '#fff',
       padding: '3px 10px',
       borderRadius: 12,
