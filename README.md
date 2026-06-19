@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# PackDex
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A retro-styled **prediction market for sealed Pokémon TCG products**, built on Hyperliquid.
 
-Currently, two official plugins are available:
+PackDex lets users create and bet on prediction markets for sealed Pokémon booster-box prices —
+e.g. *"Will a Prismatic Evolutions ETB exceed $90 by Dec 1?"* — settled on **Hyperliquid HIP-4
+(Outcome Trading)**. The UI is **"Retro_OS"**: a Windows 95/98-inspired aesthetic with TCG-gold
+accents, available in both light and dark themes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Status — June 2026
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**v0: a working mock-data prototype.** All six screens are built and routed, the design system is
+unified with a light/dark toggle, and a real Hyperliquid-testnet wallet connection is wired in.
+Market/user data is still mock; no on-chain transactions yet.
 
-## Expanding the ESLint configuration
+### Screens (all currently mock data)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Screen | Route | Status |
+|---|---|---|
+| Home / Market Feed | `/` | ✅ built · _YOUR BETS tab + desktop Sidebar still TODO_ |
+| Market Detail | `/market/:id` | ✅ complete (chart, bet UI, info panel) |
+| Create Market | `/create` | ✅ complete · _submit is a mock alert_ |
+| Foil Pool | `/foil-pool` | ✅ complete · _deposit/withdraw is a mock alert_ |
+| Profile / Trainer Card | `/profile` | ✅ complete |
+| Leaderboard | `/leaderboard` | ✅ built · _WEEKLY/ALL-TIME toggle not yet wired_ |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### What works today
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- All six screens, client-side routing, responsive layout.
+- **Light/dark theme toggle** (🌙/☀️ in the header) — persisted to `localStorage`, no-flash on load, smooth cross-fade.
+- **Wallet connect** via injected wallet (MetaMask / Rabby) on **Hyperliquid testnet (chain 998)**, with live native (HYPE) balance — see `src/lib/wagmi.ts` and `src/lib/useWallet.ts`.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Known caveat
+
+- As of **2026-06-18**, Hyperliquid's testnet **EVM RPC** (`rpc.hyperliquid-testnet.xyz/evm`) is
+  returning broken TLS (server-side outage) — so the live wallet handshake can't be completed yet.
+  Mainnet RPC and the testnet INFO API are unaffected. The integration is correct and ready; it just
+  needs the endpoint back.
+
+---
+
+## Tech stack
+
+- **Vite + React 19 + TypeScript**
+- **react-router-dom** (routing) · **Zustand** (UI state) · **Recharts** (charts)
+- **wagmi v3 + viem** (Hyperliquid testnet wallet)
+- **Hand-written CSS with design tokens** in `src/styles/retro.css` (light/dark via `[data-theme]`).
+  _Note: there is no Tailwind, despite what older notes in `CONTEXT.md` say._
+
+## Getting started
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # tsc -b && vite build
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Wallet / Hyperliquid testnet
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To test wallet connect, add the network to Rabby/MetaMask and import the dev wallet:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Field | Value |
+|---|---|
+| Network name | Hyperliquid Testnet |
+| RPC URL | `https://rpc.hyperliquid-testnet.xyz/evm` |
+| Chain ID | `998` |
+| Currency | `HYPE` |
+
+The dev wallet's private key lives in `.dev-wallet.json` (git-ignored; a **testnet throwaway**).
+Import it into your wallet, then click **CONNECT** in the header.
+
+---
+
+## Roadmap — what to work on next
+
+1. **Finish the wallet flow** — complete the live connect test once the testnet RPC recovers, then
+   display the **USDH** (ERC-20) balance instead of just native HYPE (needs the USDH token address).
+2. **Quick wins** — implement Home's "YOUR BETS" filter; make the Leaderboard WEEKLY/ALL-TIME toggle
+   switch real data; mount the built-but-unused `Sidebar` on Home; add a 404 route.
+3. **Make it interactive** — move mock data into Zustand and add mock write-actions (`placeBet`,
+   `addMarket`, `deposit/withdraw`) so CTAs mutate state instead of firing `alert()`s.
+4. **Go on-chain** — real HIP-4 market creation/settlement and USDH transactions (replaces mock).
+5. **Housekeeping** — adopt or delete the orphaned components (`ui/Badge`, `ui/TitleBar`,
+   `profile/*`); build or drop `layout/Footer`.
+
+## Project structure
+
 ```
+src/
+  components/   layout (Header), market (MarketCard, MarketChart, BetInterface), ui, profile
+  pages/        Home, MarketDetail, CreateMarket, FoilPool, Profile, Leaderboard
+  lib/          wagmi.ts (chain+config), useWallet.ts, useTheme.ts
+  store/        useAppStore.ts (Zustand — UI state)
+  data/         mockMarkets.ts, mockUser.ts
+  styles/       retro.css (design tokens + components, light/dark)
+```
+
+## Related docs
+
+- [`CONTEXT.md`](./CONTEXT.md) — original v0 design spec & Retro_OS design system.
+- [`WALLET_CONTEXT.md`](./WALLET_CONTEXT.md) — Hyperliquid wallet integration plan.
